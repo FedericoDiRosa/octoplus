@@ -1,24 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { AppContainer } from 'react-hot-loader';
 
+import App from './components/app';
 import registerServiceWorker from './registerServiceWorker';
-import Routes from './components/routes';
 import './index.scss';
 
-class App extends Component {
-  render() {
-    return (
-      <main className="App">
-        <Router>
-          <Routes />
-        </Router>
-      </main>
+ReactDOM.render(
+  <AppContainer>
+    <App />
+  </AppContainer>,
+  document.getElementById('root')
+);
+
+if (module.hot) {
+  module.hot.accept('./components/app', () => {
+    const NextApp = require('./components/app').default;
+    ReactDOM.render(
+      <AppContainer>
+        <NextApp />
+      </AppContainer>,
+      document.getElementById('root')
     );
-  }
+  });
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
-
-export default App;

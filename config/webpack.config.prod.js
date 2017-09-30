@@ -200,7 +200,12 @@ module.exports = {
                         ],
                       },
                     },
-                    require.resolve('sass-loader'),
+                    {
+                      loader: "sass-loader",
+                      options: {
+                          includePaths: [`${paths.appNodeModules}/bootstrap/scss`]
+                      }
+                    }
                   ],
                 },
                 extractTextPluginOptions
