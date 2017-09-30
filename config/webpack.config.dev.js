@@ -192,7 +192,7 @@ module.exports = {
               {
                 loader: "sass-loader",
                 options: {
-                    includePaths: [`${paths.appNodeModules}/bootstrap/scss`]
+                  includePaths: [`${paths.appNodeModules}/bootstrap/scss`]
                 }
               }
             ],

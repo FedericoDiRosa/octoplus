@@ -1,0 +1,10 @@
+.Slide {
+  width: 500px;
+  .text {
+    cursor: default;
+    font-size: 4rem;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: url(../../images/Avenir_img.jpg);
+  }
+}
