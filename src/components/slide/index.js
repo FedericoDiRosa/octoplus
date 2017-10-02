@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { VelocityComponent } from 'velocity-react';
 
 import './index.scss';
 
 class Slide extends Component {
+  constructor() {
+    super();
+    this.state = { hover: false }
+  }
+
   handleClick() {
     if (this.props.i === this.props.currentSlide) {
       this.props.history.push(`/font/${this.props.font}`)
@@ -12,12 +18,34 @@ class Slide extends Component {
     }
   }
 
+  getAnimationProps() {
+    const animationProps = {
+      animation: {
+        translateX: '0px'
+      },
+      duration: 300
+    };
+    if (this.state.hover) {
+      if (this.props.i > this.props.currentSlide) {
+        animationProps.animation.translateX = '-20px';
+      } else if (this.props.i < this.props.currentSlide) {
+        animationProps.animation.translateX = '20px';
+      } else {
+        animationProps.animation.translateX = '0px';
+      }
+    }
+    return animationProps;
+  }
+
   render() {
+    const animationProps = this.getAnimationProps();
     return (
-      <div className="Slide" onClick={() => this.handleClick()}>
-        <div className="initials">Aa</div>
-        <span className="font text-uppercase">{this.props.font}</span>
-      </div>
+      <VelocityComponent {...animationProps}>
+        <div className="Slide text-center" onClick={() => this.handleClick()} onMouseEnter={() => this.setState({ hover: true })} onMouseLeave={() => this.setState({ hover: false })}>
+          <div className="initials">Aa</div>
+          <span className="font text-uppercase">{this.props.font}</span>
+        </div>
+      </VelocityComponent>
     );
   }
 }

@@ -13,16 +13,6 @@
 
   .Slider {
     transform: translateY(-30px);
-    .slick-slide {
-      text-align: center;
-      transition: transform .3s ease;
-      &:not(.slick-center):hover {
-        transform: translateX(20px);
-      }
-      &.slick-center:not(.slick-cloned) ~ .slick-slide:hover {
-        transform: translateX(-20px);
-      }
-    }
   }
 
   .progress-container {
