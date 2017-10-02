@@ -1,0 +1,15 @@
+@import '../../styles/colors';
+@import '../../styles/variables';
+
+.Progress {
+
+  .letter {
+    flex: 1;
+    font-size: 0.75rem;
+    color: $gray-lighter;
+    transition: color $transitions-speed ease;
+    &.highlighted {
+      color: $black;
+    }
+  }
+}

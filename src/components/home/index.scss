@@ -1,5 +1,6 @@
 .Home {
   width: 100vw;
+  height: 100vh;
 
   .Title {
     text-transform: uppercase;
@@ -20,9 +21,14 @@
       &.slick-center:not(.slick-cloned) ~ .slick-slide:hover {
         transform: translateX(-10px);
       }
-      &.slick-center:hover {
-        transform: translateY(10px);
-      }
+      // &.slick-center:hover {
+      //   transform: translateY(10px);
+      // }
     }
+  }
+
+  .progress-container {
+    position: fixed;
+    bottom: 0;
   }
 }

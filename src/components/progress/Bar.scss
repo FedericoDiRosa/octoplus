@@ -1,0 +1,9 @@
+@import '../../styles/colors';
+@import '../../styles/variables';
+
+.Bar {
+  margin-top: 14px;
+  .progress-bar {
+    transition: width $transitions-speed ease;
+  }
+}
