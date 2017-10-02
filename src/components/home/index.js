@@ -48,7 +48,13 @@ class Home extends Component {
           <Slider ref={c => this.slider = c } {...settings} className="Slider">
             {fonts.map((font, i) =>
               <div key={i}>
-                <Slide history={this.props.history} i={i} font={font} currentSlide={this.state.currentSlide} slickGoTo={(i, letter) => this.slickGoTo(i, letter)}/>
+                <Slide
+                  history={this.props.history}
+                  i={i}
+                  font={font}
+                  currentSlide={this.state.currentSlide}
+                  slickGoTo={(i, letter) => this.slickGoTo(i, letter)}
+                />
               </div>
             )}
           </Slider>

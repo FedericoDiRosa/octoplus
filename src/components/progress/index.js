@@ -36,7 +36,7 @@ class Progress extends Component {
 }
 
 Progress.propTypes = {
-  currentProgress: PropTypes.string
+  currentProgress: PropTypes.string.isRequired
 };
 
 export default Progress;

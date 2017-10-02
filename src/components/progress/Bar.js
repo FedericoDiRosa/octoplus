@@ -20,7 +20,7 @@ class Bar extends Component {
 }
 
 Bar.propTypes = {
-  black: PropTypes.bool,
+  black: PropTypes.bool.isRequired,
   currentPosition: PropTypes.number,
   letters: PropTypes.array
 };

@@ -1,10 +1,23 @@
+@import '../../styles/colors';
+@import '../../styles/variables';
+
 .Slide {
-  width: 500px;
-  .text {
+  width: 35vw;
+
+  .initials {
     cursor: default;
-    font-size: 4rem;
+    font-size: 22vw;
+    line-height: 24rem;
     -webkit-background-clip: text;
-    color: transparent;
     background-image: url(../../images/Avenir_img.jpg);
+    background-size: cover;
+    transition: color $transitions-speed ease;
+    &:hover {
+      color: transparent;
+    }
+  }
+
+  .font {
+    color: $gray-lighter;
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 
 class Font extends Component {
   render() {
@@ -10,13 +9,5 @@ class Font extends Component {
     );
   }
 }
-
-// Font.propTypes = {
-//   match: PropTypes.shape({
-//     params: PropTypes.shape({
-//       font: PropTypes.string.isRequired
-//     })
-//   })
-// };
 
 export default Font;

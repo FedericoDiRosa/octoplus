@@ -15,18 +15,19 @@ class Slide extends Component {
   render() {
     return (
       <div className="Slide" onClick={() => this.handleClick()}>
-        <span className="text">{this.props.font}</span>
+        <div className="initials">Aa</div>
+        <span className="font text-uppercase">{this.props.font}</span>
       </div>
     );
   }
 }
 
 Slide.propTypes = {
-  i: PropTypes.number,
-  currentSlide: PropTypes.number,
+  i: PropTypes.number.isRequired,
+  currentSlide: PropTypes.number.isRequired,
   font: PropTypes.string.isRequired,
-  slickGoTo: PropTypes.func,
-  history: PropTypes.object
+  slickGoTo: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default Slide;
