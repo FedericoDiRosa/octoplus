@@ -3,17 +3,32 @@
 
 .Slide {
   width: 35vw;
+  position: relative;
 
   .initials {
     cursor: default;
     font-size: 22vw;
     line-height: 24rem;
-    -webkit-background-clip: text;
     background-image: url(../../images/Avenir_img.jpg);
     background-size: cover;
     transition: color $transitions-speed ease;
-    &:hover {
+    position: relative;
+    z-index: 2;
+    &:not(.clone) {
+      -webkit-background-clip: text;
+    }
+
+    &.clip:hover {
       color: transparent;
+    }
+
+    &.clone {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: calc(100% - 24px);
+      z-index: 1;
     }
   }
 
