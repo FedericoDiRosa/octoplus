@@ -10,28 +10,27 @@ class Slide extends Component {
     this.state = { hover: false }
   }
 
+  goToFont() {
+    this.props.history.push(`/font/${this.props.font}`)
+  }
+
   handleClick() {
     if (this.props.i === this.props.currentSlide) {
-      this.props.history.push(`/font/${this.props.font}`)
+      this.props.fadeOut(() => this.goToFont());
     } else {
       this.props.slickGoTo(this.props.i, this.props.font.charAt(0).toLowerCase())
     }
   }
 
   getAnimationProps() {
-    const animationProps = {
-      animation: {
-        translateX: '0px'
-      },
-      duration: 300
-    };
+    const animationProps = { translateX: '0px' };
     if (this.state.hover) {
       if (this.props.i > this.props.currentSlide) {
-        animationProps.animation.translateX = '-20px';
+        animationProps.translateX = '-20px';
       } else if (this.props.i < this.props.currentSlide) {
-        animationProps.animation.translateX = '20px';
+        animationProps.translateX = '20px';
       } else {
-        animationProps.animation.translateX = '0px';
+        animationProps.translateX = '0px';
       }
     }
     return animationProps;
@@ -40,7 +39,7 @@ class Slide extends Component {
   render() {
     const animationProps = this.getAnimationProps();
     return (
-      <VelocityComponent {...animationProps}>
+      <VelocityComponent animation={animationProps} duration='300'>
         <div className="Slide text-center" onClick={() => this.handleClick()} onMouseEnter={() => this.setState({ hover: true })} onMouseLeave={() => this.setState({ hover: false })}>
           <div className="initials">Aa</div>
           <span className="font text-uppercase">{this.props.font}</span>
@@ -55,7 +54,8 @@ Slide.propTypes = {
   currentSlide: PropTypes.number.isRequired,
   font: PropTypes.string.isRequired,
   slickGoTo: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  fadeOut: PropTypes.func.isRequired
 };
 
 export default Slide;

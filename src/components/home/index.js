@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
+import { VelocityComponent } from 'velocity-react';
 
 import Title from './Title';
 import Slide from '../slide';
@@ -26,6 +27,7 @@ class Home extends Component {
     this.state = {
       currentSlide: 0,
       currentProgress: 'a',
+      fadeOut: false
     };
   }
 
@@ -38,29 +40,52 @@ class Home extends Component {
     });
   }
 
+  fadeOut(fadeOutCallback) {
+    this.setState({ fadeOut: true, fadeOutCallback })
+  }
+
+  fadeOutComplete() {
+    if (this.state.fadeOutCallback) this.state.fadeOutCallback()
+  }
+
   render() {
+    const defaultAnimationProps = { translateY: '0', opacity: 1 };
+    const animationProps = {...defaultAnimationProps};
+    if (this.state.fadeOut) {
+      animationProps.translateY = '100px';
+      animationProps.opacity = 0;
+    }
     return (
       <Row className="Home align-items-center justify-content-end">
         <Col className="col-3">
-          <Title>The type story</Title>
+          <VelocityComponent animation={animationProps} duration='1000' complete={() => this.fadeOutComplete()}>
+            <Title>The type story</Title>
+          </VelocityComponent>
         </Col>
+
         <Col className="col-8">
-          <Slider ref={c => this.slider = c } {...settings} className="Slider">
+          <Slider ref={c => this.slider = c} {...settings} className="Slider">
             {fonts.map((font, i) =>
               <div key={i}>
-                <Slide
-                  history={this.props.history}
-                  i={i}
-                  font={font}
-                  currentSlide={this.state.currentSlide}
-                  slickGoTo={(i, letter) => this.slickGoTo(i, letter)}
-                />
+                <VelocityComponent animation={i === this.state.currentSlide ? defaultAnimationProps : animationProps} duration='1000'>
+                  <Slide
+                    i={i}
+                    history={this.props.history}
+                    font={font}
+                    currentSlide={this.state.currentSlide}
+                    slickGoTo={(i, letter) => this.slickGoTo(i, letter)}
+                    fadeOut={(fadeOutCallback) => this.fadeOut(fadeOutCallback)}
+                  />
+                </VelocityComponent>
               </div>
             )}
           </Slider>
         </Col>
+
         <Col className="col-12 progress-container">
-          <Progress currentProgress={this.state.currentProgress}/>
+          <VelocityComponent animation={animationProps} duration='1000'>
+            <Progress currentProgress={this.state.currentProgress}/>
+          </VelocityComponent>
         </Col>
       </Row>
     );

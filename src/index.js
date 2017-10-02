@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import 'velocity-animate';
-import 'velocity-animate/velocity.ui';
 
 import App from './components/app';
 import registerServiceWorker from './registerServiceWorker';
