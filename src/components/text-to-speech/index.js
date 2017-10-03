@@ -13,19 +13,23 @@ class TextToSpeech extends Component {
   }
 
   componentWillUnmount() {
-    window.speechSynthesis.cancel();
-    this.utterance = null;
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      this.utterance = null;
+    }
   }
 
   toggleSpeech() {
-    if (!this.utterance) {
-      this.utterance = new SpeechSynthesisUtterance(this.props.text);
-      window.speechSynthesis.speak(this.utterance);
-      this.setState({ isPlaying: true });
-    } else {
-      window.speechSynthesis.cancel();
-      this.utterance = null;
-      this.setState({ isPlaying: false });
+    if (window.speechSynthesis) {
+      if (!this.utterance) {
+        this.utterance = new SpeechSynthesisUtterance(this.props.text);
+        window.speechSynthesis.speak(this.utterance);
+        this.setState({ isPlaying: true });
+      } else {
+        window.speechSynthesis.cancel();
+        this.utterance = null;
+        this.setState({ isPlaying: false });
+      }
     }
   }
 
@@ -35,6 +39,7 @@ class TextToSpeech extends Component {
         <div onClick={() => this.toggleSpeech()}>
           { this.state.isPlaying ? <img src={muteIcon} alt="Stop"/> : <img src={speakerIcon} alt="Play"/> }
           { this.state.isPlaying ? 'Stop reading' : 'Start reading' }
+          { !window.speechSynthesis ? 'Text to speech not supported by your browser': '' }
         </div>
       </div>
     );
