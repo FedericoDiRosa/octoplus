@@ -49,14 +49,17 @@ class Home extends Component {
   }
 
   render() {
+    const fadeOut = this.state.fadeOut || this.props.location.pathname.includes('font');
+    const fadeToBlack = this.state.fadeToBlack || this.props.location.pathname.includes('font');
+
     const animationProps = { animation: { translateY: '0', opacity: 1 }, duration: 1000 };
-    if (this.state.fadeOut) {
+    if (fadeOut) {
       animationProps.animation.translateY = '100px';
       animationProps.animation.opacity = 0;
     }
 
     const classNames = ['Home', 'align-items-center', 'justify-content-end', 'm-0'];
-    if (this.state.fadeToBlack) classNames.push('fadeToBlack')
+    if (fadeToBlack) classNames.push('fadeToBlack')
 
     return (
       <Row className={classNames.join(' ')}>
@@ -79,7 +82,7 @@ class Home extends Component {
                   fadeOutFunction={() => this.fadeOut()}
                   fadeToBlackFunction={() => this.fadeToBlack()}
                   animationProps={animationProps}
-                  fadeOutState={this.state.fadeOut}
+                  fadeOutState={fadeOut}
                 />
               </div>
             )}

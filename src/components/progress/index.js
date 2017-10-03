@@ -22,10 +22,10 @@ class Progress extends Component {
         </Col>
         <Col className="col-12">
           <Row>
-            <Col className="col-1 pr-0">
+            <Col className="col-1 p-0">
               <Bar black={true}/>
             </Col>
-            <Col className="col-11 pl-0">
+            <Col className="col-11 p-0">
               <Bar letters={letters} currentPosition={letters.indexOf(this.props.currentProgress)}/>
             </Col>
           </Row>

@@ -11,13 +11,8 @@ class Slide extends Component {
     this.state = { hover: false }
   }
 
-  goToFont() {
-    this.props.history.push(`/font/${this.props.font}`)
-  }
-
   handleClick() {
     if (this.props.i === this.props.currentSlide) {
-      // this.props.fadeOutFunction(() => this.goToFont());
       this.props.fadeOutFunction();
     } else {
       this.props.slickGoTo(this.props.i, this.props.font.charAt(0).toLowerCase())
@@ -60,6 +55,7 @@ class Slide extends Component {
       if (this.props.i === this.props.currentSlide) {
         initialsAnimationProps = { animation: { scale: 1.75, opacity: 0 }, duration: 1000 };
         initialsCloneAnimationProps = { animation: { scale: 0.8, opacity: 1 }, duration: 1000 };
+        setTimeout(() => { this.props.history.push(`/font/${this.props.font}`) }, 1000);
       }
     }
 
