@@ -47,7 +47,7 @@ class Slide extends Component {
       fontsAnimationProps = {...animationProps};
 
       if (!this.state.goToFont) {
-        setTimeout(() => { this.setState({ goToFont: true }, () => this.props.fadeToBlackFunction()) }, 1000);
+        setTimeout(() => this.setState({ goToFont: true }, () => this.props.fadeToBlackFunction()), 1000);
       }
     }
 
@@ -55,11 +55,17 @@ class Slide extends Component {
       if (this.props.i === this.props.currentSlide) {
         initialsAnimationProps = { animation: { scale: 1.75, opacity: 0 }, duration: 1000 };
         initialsCloneAnimationProps = { animation: { scale: 0.8, opacity: 1 }, duration: 1000 };
-        setTimeout(() => { this.props.history.push(`/font/${this.props.font}`) }, 1000);
+        setTimeout(() => this.goToFontPage(), 1000);
       }
     }
 
     return { initialsAnimationProps, initialsCloneAnimationProps, fontsAnimationProps };
+  }
+
+  goToFontPage() {
+    if (!this.props.history.location.pathname.includes('font') && this.props.fadeOutState) {
+      this.props.history.push(`/font/${this.props.font}`);
+    }
   }
 
   fadingComplete() {

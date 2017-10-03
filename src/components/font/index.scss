@@ -1,10 +1,28 @@
 @import '../../styles/colors';
 
 .Font {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   color: $white;
+  padding-top: 50px;
+
+  .content {
+    padding-top: 30vh;
+    padding-bottom: 20vh;
+    height: 100vh;
+    overflow: auto;
+    mask-image: linear-gradient($black, $black 50%, transparent 100%);
+  }
+
+  .font-name {
+    font-size: 8rem;
+  }
+
+  .Title {
+    transform: scale(0.6);
+    transform-origin: 0% 0%;
+  }
 }

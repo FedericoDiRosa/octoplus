@@ -10,7 +10,7 @@ import fonts from './fonts.json';
 
 import { Col, Row } from 'reactstrap';
 
-const settings = {
+const sliderSettings = {
   dots: false,
   arrows: false,
   infinite: false,
@@ -48,11 +48,26 @@ class Home extends Component {
     this.setState({ fadeToBlack: true })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.pathname === '/' && this.props.location.pathname.includes('font')) {
+      this.setState({
+        fadeOut: false,
+        fadeToBlack: false,
+        refreshSlider: true
+      }, () => {
+        // set
+        this.setState({
+          refreshSlider: false
+        })
+      })
+    }
+  }
+
   render() {
     const fadeOut = this.state.fadeOut || this.props.location.pathname.includes('font');
     const fadeToBlack = this.state.fadeToBlack || this.props.location.pathname.includes('font');
 
-    const animationProps = { animation: { translateY: '0', opacity: 1 }, duration: 1000 };
+    const animationProps = { animation: { translateY: '0px', opacity: 1 }, duration: 1000 };
     if (fadeOut) {
       animationProps.animation.translateY = '100px';
       animationProps.animation.opacity = 0;
@@ -70,23 +85,26 @@ class Home extends Component {
         </Col>
 
         <Col className="col-8 translateY-30">
-          <Slider ref={c => this.slider = c} {...settings} className="Slider">
-            {fonts.map((font, i) =>
-              <div key={i}>
-                <Slide
-                  i={i}
-                  history={this.props.history}
-                  font={font}
-                  currentSlide={this.state.currentSlide}
-                  slickGoTo={(i, letter) => this.slickGoTo(i, letter)}
-                  fadeOutFunction={() => this.fadeOut()}
-                  fadeToBlackFunction={() => this.fadeToBlack()}
-                  animationProps={animationProps}
-                  fadeOutState={fadeOut}
-                />
-              </div>
-            )}
-          </Slider>
+          {!this.state.refreshSlider ?
+            <Slider ref={c => this.slider = c} {...sliderSettings} className="Slider">
+              {fonts.map((font, i) =>
+                <div key={i}>
+                  <Slide
+                    i={i}
+                    history={this.props.history}
+                    font={font}
+                    currentSlide={this.state.currentSlide}
+                    slickGoTo={(i, letter) => this.slickGoTo(i, letter)}
+                    fadeOutFunction={() => this.fadeOut()}
+                    fadeToBlackFunction={() => this.fadeToBlack()}
+                    animationProps={animationProps}
+                    fadeOutState={fadeOut}
+                  />
+                </div>
+              )}
+            </Slider>
+            : undefined
+          }
         </Col>
 
         <Col className="col-12 progress-container">
