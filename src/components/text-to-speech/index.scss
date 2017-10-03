@@ -1,0 +1,16 @@
+.TextToSpeech {
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+  }
+  img {
+    width: 24px;
+    margin-right: 6px;
+    margin-top: -4px;
+    transition: all .2s ease;
+  }
+}
