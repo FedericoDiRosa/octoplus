@@ -7,8 +7,9 @@ import Slide from '../slide';
 import Progress from '../progress';
 import './index.scss';
 import fonts from './fonts.json';
-
 import { Col, Row } from 'reactstrap';
+
+fonts.sort();
 
 const sliderSettings = {
   dots: false,
@@ -18,7 +19,8 @@ const sliderSettings = {
   slidesToShow: 3,
   slidesToScroll: 1,
   centerMode: true,
-  variableWidth: true
+  variableWidth: true,
+  rows: 1
 };
 
 class Home extends Component {
@@ -26,7 +28,7 @@ class Home extends Component {
     super();
     this.state = {
       currentSlide: 0,
-      currentProgress: 'a',
+      currentProgress: fonts[0].charAt(0).toLowerCase(),
       fadeOut: false
     };
   }
@@ -53,9 +55,10 @@ class Home extends Component {
       this.setState({
         fadeOut: false,
         fadeToBlack: false,
-        refreshSlider: true
+        refreshSlider: true,
+        currentSlide: 0,
+        currentProgress: fonts[0].charAt(0).toLowerCase()
       }, () => {
-        // set
         this.setState({
           refreshSlider: false
         })
