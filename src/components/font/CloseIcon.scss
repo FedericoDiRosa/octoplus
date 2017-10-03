@@ -1,7 +1,15 @@
 @import '../../styles/colors';
+@import "variables";
+@import 'mixins';
 
 .CloseIcon {
   fill: $white;
-  transform: scale(0.10);
+  transform: scale(0.30);
   transform-origin: 100% 0%;
+
+  @include media-breakpoint-up(lg) {
+    & {
+      transform: scale(0.10);
+    }
+  }
 }

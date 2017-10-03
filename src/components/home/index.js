@@ -19,8 +19,7 @@ const sliderSettings = {
   slidesToShow: 3,
   slidesToScroll: 1,
   centerMode: true,
-  variableWidth: true,
-  rows: 1
+  variableWidth: true
 };
 
 class Home extends Component {
@@ -76,18 +75,18 @@ class Home extends Component {
       animationProps.animation.opacity = 0;
     }
 
-    const classNames = ['Home', 'align-items-center', 'justify-content-end', 'm-0'];
+    const classNames = ['Home', 'justify-content-end', 'm-0'];
     if (fadeToBlack) classNames.push('fadeToBlack')
 
     return (
       <Row className={classNames.join(' ')}>
-        <Col className="col-3 translateY-30">
+        <Col className="col-12 col-lg-3 title-col">
           <VelocityComponent {...animationProps}>
             <Title>The type story</Title>
           </VelocityComponent>
         </Col>
 
-        <Col className="col-8 translateY-30">
+        <Col className="col-12 col-lg-8 slider-col">
           {!this.state.refreshSlider ?
             <Slider ref={c => this.slider = c} {...sliderSettings} className="Slider">
               {fonts.map((font, i) =>

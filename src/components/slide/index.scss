@@ -1,5 +1,7 @@
 @import '../../styles/colors';
 @import '../../styles/variables';
+@import "variables";
+@import 'mixins';
 
 .Slide {
   width: 35vw;
@@ -8,7 +10,14 @@
   .initials {
     cursor: default;
     font-size: 22vw;
-    line-height: 24rem;
+    line-height: 10rem;
+
+    @include media-breakpoint-up(lg) {
+      & {
+        line-height: 24rem;
+      }
+    }
+
     background-image: url(../../images/Avenir_img.jpg);
     background-size: cover;
     transition: color $transitions-speed ease;

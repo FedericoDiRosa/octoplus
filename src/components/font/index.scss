@@ -1,4 +1,6 @@
 @import '../../styles/colors';
+@import "variables";
+@import 'mixins';
 
 .Font {
   position: fixed;
@@ -12,9 +14,15 @@
   .content {
     padding-top: 30vh;
     padding-bottom: 20vh;
-    height: 100vh;
+    height: 70vh;
     overflow: auto;
     mask-image: linear-gradient($black, $black 50%, transparent 100%);
+
+    @include media-breakpoint-up(lg) {
+      & {
+        height: 100vh;
+      }
+    }
   }
 
   .font-name {
@@ -24,5 +32,19 @@
   .Title {
     transform: scale(0.6);
     transform-origin: 0% 0%;
+  }
+
+  .close-icon-container {
+    position: absolute;
+    top: auto;
+    right: 15px;
+
+    @include media-breakpoint-up(lg) {
+      & {
+        position: inherit;
+        top: auto;
+        right: auto;
+      }
+    }
   }
 }

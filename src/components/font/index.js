@@ -30,14 +30,14 @@ class Font extends Component {
     return (
       <div className="Font">
         <Row className="justify-content-center">
-          <Col className="col-2">
+          <Col className="col-11 col-lg-2">
             <VelocityComponent {...animationProps}>
               <div>
                 <Title>The type story</Title>
               </div>
             </VelocityComponent>
           </Col>
-          <Col className="col-6 content">
+          <Col className="col-11 col-lg-6 content">
             <VelocityComponent {...animationProps}>
               <div>
                 <TextToSpeech text={text}/>
@@ -46,7 +46,7 @@ class Font extends Component {
               </div>
             </VelocityComponent>
           </Col>
-          <Col className="col-2 text-right">
+          <Col className="col-2 col-lg-2 text-right close-icon-container">
             <VelocityComponent {...animationProps}>
               <div>
                 <Link to="/">

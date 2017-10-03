@@ -1,9 +1,17 @@
 @import '../../styles/colors';
+@import "variables";
+@import 'mixins';
 
 .Home {
   width: 100vw;
   height: 100vh;
   transition: background 1s ease;
+
+  @include media-breakpoint-up(lg) {
+    & {
+      align-items: center !important;
+    }
+  }
 
   &.fadeToBlack {
     background: $black;
@@ -20,7 +28,17 @@
     bottom: 0;
   }
 
-  .translateY-30 {
+  .title-col {
+    transform: translateY(30px);
+  }
+
+  .slider-col {
     transform: translateY(-30px);
+  }
+
+  @include media-breakpoint-up(lg) {
+    .title-col, .slider-col {
+      transform: translateY(-30px);
+    }
   }
 }
