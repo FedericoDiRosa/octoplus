@@ -18,7 +18,14 @@
       -webkit-background-clip: text;
     }
 
-    &.clip:hover {
+    &.clip {
+      opacity: 0.5;
+      &.center {
+        opacity: 1;
+      }
+    }
+
+    &.clip.center:hover {
       color: transparent;
     }
 

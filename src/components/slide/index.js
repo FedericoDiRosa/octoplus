@@ -85,7 +85,7 @@ class Slide extends Component {
         onMouseLeave={() => this.setState({ hover: false })}
       >
         <VelocityComponent {...initialsAnimationProps}>
-          <div className={classNames({ initials: true, clip: !this.state.goToFont })} style={ { fontFamily: this.props.font } }>Aa</div>
+          <div className={classNames({ initials: true, clip: !this.state.goToFont, center: this.props.i === this.props.currentSlide })} style={ { fontFamily: this.props.font } }>Aa</div>
         </VelocityComponent>
 
         <VelocityComponent {...initialsCloneAnimationProps}>
