@@ -6,10 +6,24 @@
   .letter {
     flex: 1;
     font-size: 0.75rem;
-    color: $gray-lighter;
+    color: $gray-lighter !important;
     transition: color $transitions-speed ease;
+
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    line-height: inherit;
+    padding: inherit;
+
     &.highlighted {
-      color: $black;
+      color: $black !important;
     }
+    &:not(:disabled):hover {
+      color: $black !important;
+    }
+  }
+
+  .btn.disabled, .btn:disabled {
+    opacity: 0.3;
   }
 }

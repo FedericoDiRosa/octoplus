@@ -109,7 +109,11 @@ class Home extends Component {
 
         <Col className="col-12 progress-container">
           <VelocityComponent {...animationProps}>
-            <Progress currentProgress={this.state.currentProgress}/>
+            <Progress
+              currentProgress={this.state.currentProgress}
+              slickGoTo={(i, letter) => this.slickGoTo(i, letter)}
+              fonts={fonts}
+            />
           </VelocityComponent>
         </Col>
       </Row>
